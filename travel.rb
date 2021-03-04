@@ -8,60 +8,44 @@ TEXT
 
 while true do 
   print "プランの番号を選択  >  "
-  plan_number = gets.to_i
-  case plan_number
-  when 1 
-    puts "沖縄旅行ですね"
-    place = "Okinawa"
-    break
-  when 2
-    puts "北海道旅行ですね"
-    place = "Hokkaido"
-    break
-  when 3
-    puts "九州旅行ですね"
-    place = "Kyusyu"
-    break
-  else  
-    puts "1~3の番号を入力してください"
-    redo
-  end
+  selected_plan_num = gets.to_i
+  break (1..3).include?(selected_plan_num)
+  puts "1~3の番号を入力してください"
 end 
+
+case selected_plan_num
+when 1 
+  place = "沖縄"
+when 2
+  place = "北海道"
+when 3
+  place = "九州"
+end
+
+puts "#{place}旅行ですね"
 
 while true do 
   print "何名で予約されますか？\n人数を入力  >  "
-  number = gets.to_i
-  if number > 0
-    puts "#{number}名ですね"
-    break
-  else
-    puts "1以上を入力してください。"
-    redo
-  end
+  people_num = gets.to_i
+  break if people_num > 0
+  puts "1以上の数値を入力してください"
 end
 
+
 case place 
-when "Okinawa"
-  total_price = 10000 * number
-  if number >= 5
-    total_price = (total_price * 0.9).floor
-    puts "5名以上なので10%引きとなります"
-  end
-  puts "合計料金は#{total_price}円になります"
-when "Hokkaido"
-  total_price = 20000 * number
-  if number >= 5
-    total_price = (total_price * 0.9).floor
-    puts "5名以上なので10%引きとなります"
-  end
-  puts "合計料金は#{total_price}円になります"
-when "Kyusyu"
-  total_price = 15000 * number
-  if number >= 5
-    total_price = (total_price * 0.9).floor
-    puts "5名以上なので10%引きとなります"
-  end
-  puts "合計料金は#{total_price}円になります"
+when "沖縄"
+  total_price = 10000 * people_num
+when "北海道"
+  total_price = 20000 * people_num
+when "九州"
+  total_price = 15000 * people_num
 end
+
+if people_num >= 5
+  total_price = (total_price * 0.9).floor
+  puts "5人以上なので10%割引になります"
+end
+
+puts "合計金額は#{total_price}円になります"
 
 
