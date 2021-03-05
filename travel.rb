@@ -9,17 +9,20 @@ TEXT
 while true do 
   print "プランの番号を選択  >  "
   selected_plan_num = gets.to_i
-  break (1..3).include?(selected_plan_num)
+  break if (1..3).include?(selected_plan_num)
   puts "1~3の番号を入力してください"
 end 
 
 case selected_plan_num
 when 1 
   place = "沖縄"
+  price = 10000
 when 2
   place = "北海道"
+  price = 20000
 when 3
   place = "九州"
+  price = 15000
 end
 
 puts "#{place}旅行ですね"
@@ -31,15 +34,7 @@ while true do
   puts "1以上の数値を入力してください"
 end
 
-
-case place 
-when "沖縄"
-  total_price = 10000 * people_num
-when "北海道"
-  total_price = 20000 * people_num
-when "九州"
-  total_price = 15000 * people_num
-end
+total_price = price * people_num
 
 if people_num >= 5
   total_price = (total_price * 0.9).floor
